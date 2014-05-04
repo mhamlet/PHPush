@@ -39,9 +39,9 @@ class PHPush {
         if (!self::provider_exists($provider_name)) throw new \Exception("Provider '{$provider_name}' does not exist.");
 
         // Getting class name
-//        $class_name = "PHPush\\providers\\{$provider_name}\\Provider";
+        $class_name = "\\PHPush\\providers\\{$provider_name}\\Provider";
 
         // Returns provider's instance
-        return new providers\android\Provider();
+        return new $class_name;
     }
 }
