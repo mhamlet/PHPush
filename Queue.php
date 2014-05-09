@@ -14,7 +14,7 @@ class Queue {
     /**
      * Add devices to queue
      *
-     * @param providers\Device|array[provider\Device] $devices
+     * @param providers\Device|array $devices
      *
      * @return $this
      */
