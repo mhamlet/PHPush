@@ -82,7 +82,7 @@ class Queue {
     public function send() {
 
         // Check if message is not empty
-        if (empty($message)) throw new \Exception('Message cannot be empty.');
+        if (empty($this->message)) throw new \Exception('Message cannot be empty.');
 
         // For each provider
         foreach ($this->devices as $provider => $devices) {
