@@ -1,9 +1,27 @@
 <?php
 
-
 namespace PHPush\providers;
 
+interface Device {
 
-class Device {
+    /**
+     * Setting device token
+     *
+     * @param string $device_token
+     */
+    public function __construct($device_token);
 
-} 
+    /**
+     * Returns provider of device
+     *
+     * @return string
+     */
+    public function getProvider();
+
+    /**
+     * Getting device token
+     *
+     * @return string
+     */
+    public function getDeviceToken();
+}
