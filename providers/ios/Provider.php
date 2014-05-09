@@ -4,8 +4,18 @@ namespace PHPush\providers\ios;
 
 use PHPush\providers\Device;
 
+/**
+ * Class Provider
+ *
+ * @package PHPush\providers\ios
+ */
 class Provider implements \PHPush\providers\Provider {
 
+    /**
+     * Path to certificate
+     *
+     * @var string
+     */
     private $certificate = '';
 
     /**

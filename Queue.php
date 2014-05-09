@@ -2,6 +2,11 @@
 
 namespace PHPush;
 
+/**
+ * Class Queue
+ *
+ * @package PHPush
+ */
 class Queue {
 
     /**

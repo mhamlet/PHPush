@@ -6,6 +6,11 @@ namespace PHPush;
 require_once 'autoload.php';
 require_once 'Provider.php';
 
+/**
+ * Class PHPush
+ *
+ * @package PHPush
+ */
 class PHPush {
 
     /**

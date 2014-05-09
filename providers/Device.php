@@ -2,6 +2,11 @@
 
 namespace PHPush\providers;
 
+/**
+ * Interface Device
+ *
+ * @package PHPush\providers
+ */
 interface Device {
 
     /**

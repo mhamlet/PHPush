@@ -4,6 +4,11 @@
 namespace PHPush\providers\android;
 
 
+/**
+ * Class Device
+ *
+ * @package PHPush\providers\android
+ */
 class Device implements \PHPush\providers\Device {
 
     /**

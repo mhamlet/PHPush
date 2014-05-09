@@ -2,6 +2,11 @@
 
 namespace PHPush\providers;
 
+/**
+ * Interface Provider
+ *
+ * @package PHPush\providers
+ */
 interface Provider {
 
     /**

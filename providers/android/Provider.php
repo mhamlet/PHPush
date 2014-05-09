@@ -4,8 +4,18 @@ namespace PHPush\providers\android;
 
 use PHPush\providers\Device;
 
+/**
+ * Class Provider
+ *
+ * @package PHPush\providers\android
+ */
 class Provider implements \PHPush\providers\Provider {
 
+    /**
+     * Google Access Key
+     *
+     * @var string
+     */
     private $access_key = '';
 
     /**
