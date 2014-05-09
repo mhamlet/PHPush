@@ -69,6 +69,11 @@ class Queue {
         return $this;
     }
 
+    /**
+     * Send a message to all devices in current queue
+     *
+     * @throws \Exception
+     */
     public function send() {
 
         // Check if message is not empty
