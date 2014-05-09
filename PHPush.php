@@ -28,7 +28,9 @@ class PHPush {
     }
 
     /**
-     * @param $provider_name
+     * Returns provider
+     *
+     * @param string $provider_name
      *
      * @return providers\Provider
      * @throws \Exception
