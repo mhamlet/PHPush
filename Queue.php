@@ -68,4 +68,20 @@ class Queue {
 
         return $this;
     }
+
+    public function send() {
+
+        // Check if message is not empty
+        if (empty($message)) throw new \Exception('Message cannot be empty.');
+
+        // For each provider
+        foreach ($this->devices as $provider => $devices) {
+
+            // Getting provider
+            $provider = PHPush::Provider($provider);
+
+            // Sending to all devices
+            $provider->send($this->message, $devices);
+        }
+    }
 }
