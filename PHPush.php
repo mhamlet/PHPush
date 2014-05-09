@@ -46,4 +46,13 @@ class PHPush {
         // Returns provider's instance
         return new $class_name;
     }
+
+    /**
+     * Creates new Queue
+     *
+     * @return Queue
+     */
+    public static function Queue() {
+        return new Queue();
+    }
 }
