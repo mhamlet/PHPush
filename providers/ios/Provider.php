@@ -2,6 +2,8 @@
 
 namespace PHPush\providers\ios;
 
+use PHPush\providers\Device;
+
 class Provider implements \PHPush\providers\Provider {
 
     private $certificate = '';
@@ -33,5 +35,15 @@ class Provider implements \PHPush\providers\Provider {
 
         // Save certificate
         $this->certificate = $certificate;
+    }
+
+    /**
+     * Send message to devices
+     *
+     * @param string $message
+     * @param Device $devices
+     */
+    public function send($message, $devices) {
+        // TODO: Implement send() method.
     }
 }

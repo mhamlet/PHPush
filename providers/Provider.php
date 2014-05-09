@@ -21,4 +21,12 @@ interface Provider {
      * @throws \Exception
      */
     public function setCertificate($certificate);
+
+    /**
+     * Send message to devices
+     *
+     * @param string $message
+     * @param Device $devices
+     */
+    public function send($message, $devices);
 }
