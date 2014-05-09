@@ -14,7 +14,7 @@ class Queue {
     /**
      * Add devices to queue
      *
-     * @param providers\Device|array $devices
+     * @param providers\Device|array[provider\Device] $devices
      *
      * @return $this
      */
@@ -23,8 +23,15 @@ class Queue {
         // If device is not array, save it in array
         if (!is_array($devices)) $devices = [$devices];
 
-        // Save list of devices
-        $this->devices = array_merge($this->devices, $devices);
+        // Process all devices
+        foreach ($devices as $device) {
+
+            // Getting device provider
+            $provider = $device->getProvider();
+
+            // Save the device
+            $this->devices[$provider][] = $device;
+        }
 
         return $this;
     }
