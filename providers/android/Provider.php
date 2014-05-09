@@ -32,6 +32,6 @@ class Provider implements \PHPush\providers\Provider {
     public function setCertificate($certificate) {
 
         // If empty access key, throw an error
-        if (empty($access_key)) throw new \Exception("You cannot set certificate for this provider.");
+        if (empty($certificate)) throw new \Exception("You cannot set certificate for this provider.");
     }
 }
