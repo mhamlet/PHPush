@@ -12,9 +12,8 @@ The following examples demonstrate how to send Push notifications with text "Hel
 
 ```php
 <?php
-
 // Include PHPush
-require_once 'PHPush, PHPush.php';
+require_once 'PHPush/PHPush.php';
 
 // Adding Android key
 \PHPush\PHPush::Provider(\PHPush\Provider::PROVIDER_ANDROID)->setAccessKey('test');
@@ -25,9 +24,11 @@ require_once 'PHPush, PHPush.php';
 // Creating new queue
 $queue = \PHPush\PHPush::Queue();
 
-// Adding some devices
-$queue->add(new \PHPush\providers\android\Device('android_registration_id')); // Android device
-$queue->add(new \PHPush\providers\ios\Device('ios_device_token')); // iOS device
+// Adding Android devices
+$queue->add(new \PHPush\providers\android\Device('android_registration_id'));
+
+// Adding iOS devices
+$queue->add(new \PHPush\providers\ios\Device('ios_device_token'));
 
 // Setting message
 $queue->message('Hello, World!');
