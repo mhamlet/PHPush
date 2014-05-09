@@ -9,6 +9,13 @@ require_once 'Provider.php';
 class PHPush {
 
     /**
+     * List of provider classes
+     *
+     * @var array
+     */
+    private static $providers = [];
+
+    /**
      * Check if provider exists
      *
      * @param $provider_name
@@ -40,11 +47,18 @@ class PHPush {
         // Check if provider exists
         if (!self::provider_exists($provider_name)) throw new \Exception("Provider '{$provider_name}' does not exist.");
 
-        // Getting class name
-        $class_name = "\\PHPush\\providers\\{$provider_name}\\Provider";
+        // If provider's instance is not created yet
+        if (empty(self::$providers[$provider_name])) {
+
+            // Getting class name
+            $class_name = "\\PHPush\\providers\\{$provider_name}\\Provider";
+
+            // Saving instance
+            self::$providers[$provider_name] = new $class_name;
+        }
 
         // Returns provider's instance
-        return new $class_name;
+        return self::$providers[$provider_name];
     }
 
     /**
