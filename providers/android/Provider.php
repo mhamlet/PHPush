@@ -42,8 +42,44 @@ class Provider implements \PHPush\providers\Provider {
      *
      * @param string $message
      * @param Device $devices
+     * @param array  $custom_fields
      */
-    public function send($message, $devices) {
-        // TODO: Implement send() method.
+    public function send($message, $devices, $custom_fields = []) {
+
+        // If list of devices is empty, then we must terminate this process
+        if (empty($devices)) return;
+
+        // Setting an empty $registration_ids
+        $registration_ids = [];
+
+        // For each device
+        foreach ($devices as $device) {
+
+            // Save registration ID of device
+            $registration_ids[] = $device->getDeviceToken();
+        }
+
+        // Saving basic data
+        $data = ['message' => $message];
+
+        // Merging data with custom fields
+        $data = array_merge($data, $custom_fields);
+
+        // Saving fields
+        $fields = ['registration_ids' => $registration_ids, 'data' => $data];
+
+        // Setting headers
+        $headers = ['Authorization: key=' . $this->access_key, 'Content-Type: application/json'];
+
+        // Processing request to Google to send the push
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, 'https://android.googleapis.com/gcm/send');
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($fields));
+        curl_exec($ch);
+        curl_close($ch);
     }
 }

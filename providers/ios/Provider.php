@@ -42,8 +42,9 @@ class Provider implements \PHPush\providers\Provider {
      *
      * @param string $message
      * @param Device $devices
+     * @param array  $custom_fields
      */
-    public function send($message, $devices) {
+    public function send($message, $devices, $custom_fields = []) {
         // TODO: Implement send() method.
     }
 }
