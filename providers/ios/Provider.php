@@ -60,7 +60,7 @@ class Provider implements \PHPush\providers\Provider {
         if (empty($devices)) return;
 
         // Passphrase in default is phpush
-        $passphrase = 'pushchat';
+        $passphrase = 'phpush';
 
         // If we setting passphrase in custom fields, then change it and delete from array
         if (array_key_exists('passphrase', $custom_fields)) {
