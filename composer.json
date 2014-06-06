@@ -1,0 +1,12 @@
+{
+    "name": "Hility/PHPush",
+    "description": "PHP Class to send push notifications",
+    "minimum-stability": "stable",
+    "license": "MIT License",
+    "authors": [
+        {
+            "name": "Hility",
+            "email": "contact@hility.com"
+        }
+    ]
+}
