@@ -13,12 +13,22 @@ require_once 'Provider.php';
  */
 class PHPush {
 
+    const ENVIRONMENT_DEVELOPMENT = 2;
+    const ENVIRONMENT_PRODUCTION = 4;
+
     /**
      * List of provider classes
      *
      * @var array
      */
     private static $providers = [];
+
+    /**
+     * Current working environment
+     *
+     * @var int|null
+     */
+    private static $environment = null;
 
     /**
      * Check if provider exists
@@ -73,5 +83,29 @@ class PHPush {
      */
     public static function Queue() {
         return new Queue();
+    }
+
+    /**
+     * Sets or gets the working environment
+     *
+     * @param int|null $environment
+     *
+     * @return int|null
+     */
+    public static function Environment($environment = null) {
+
+        // If we are changing environment
+        if (!is_null($environment)) {
+
+            // Setting current environment
+            self::$environment = $environment;
+        }
+
+        // Default environment is null
+        if (is_null(self::$environment)) {
+            self::$environment = self::ENVIRONMENT_DEVELOPMENT;
+        }
+
+        return self::$environment;
     }
 }

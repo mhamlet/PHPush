@@ -2,6 +2,7 @@
 
 namespace PHPush\providers\ios;
 
+use PHPush\PHPush;
 use PHPush\providers\Device;
 
 /**
@@ -84,8 +85,18 @@ class Provider implements \PHPush\providers\Provider {
             // Get device token
             $device_token = $device->getDeviceToken();
 
+            // Setting remote socket
+            $remote_socket = 'ssl://gateway.push.apple.com:2195';
+
+            // If we are in development environment
+            if (PHPush::Environment() == PHPush::ENVIRONMENT_DEVELOPMENT) {
+
+                // Change to development remote socket
+                $remote_socket = 'ssl://gateway.sandbox.push.apple.com:2195';
+            }
+
             // Open stream socket
-            $fp = stream_socket_client('ssl://gateway.sandbox.push.apple.com:2195', $err, $errstr, 60, STREAM_CLIENT_CONNECT | STREAM_CLIENT_PERSISTENT, $ctx);
+            $fp = stream_socket_client($remote_socket, $err, $errstr, 60, STREAM_CLIENT_CONNECT | STREAM_CLIENT_PERSISTENT, $ctx);
 
             // Build the binary notification
             $msg = chr(0) . pack('n', 32) . pack('H*', $device_token) . pack('n', strlen($payload)) . $payload;

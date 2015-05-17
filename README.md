@@ -11,9 +11,11 @@ Example
 The following examples demonstrate how to send Push notifications with text "Hello, World!" to 2 devices that have different platforms.
 
 ```php
-<?php
 // Include PHPush
 require_once 'PHPush/PHPush.php';
+
+// Setting environment
+\PHPush\PHPush::Environment(\PHPush\PHPush::ENVIRONMENT_PRODUCTION);
 
 // Adding Android key
 \PHPush\PHPush::Provider(\PHPush\Provider::PROVIDER_ANDROID)->setAccessKey('test');
