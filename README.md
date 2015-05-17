@@ -12,7 +12,7 @@ The following examples demonstrate how to send Push notifications with text "Hel
 
 ```php
 // Include PHPush
-require_once 'PHPush/PHPush.php';
+require_once 'vendor/autoload.php';
 
 // Setting environment
 \PHPush\PHPush::Environment(\PHPush\PHPush::ENVIRONMENT_PRODUCTION);

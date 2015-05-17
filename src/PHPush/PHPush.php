@@ -2,10 +2,6 @@
 
 namespace PHPush;
 
-// Including some files
-require_once 'autoload.php';
-require_once 'Provider.php';
-
 /**
  * Class PHPush
  *

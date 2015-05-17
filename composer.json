@@ -8,5 +8,10 @@
             "name": "Hility",
             "email": "contact@hility.com"
         }
-    ]
+    ],
+    "autoload": {
+        "psr-0": {
+            "PHPush": "src/"
+        }
+    }
 }
