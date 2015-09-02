@@ -1,12 +1,12 @@
 {
-    "name": "hility/phpush",
-    "description": "PHP Class to send push notifications",
+    "name": "mhamlet/phpush",
+    "description": "PHP Package to send push notifications",
     "minimum-stability": "stable",
     "license": "MIT License",
     "authors": [
         {
-            "name": "Hility",
-            "email": "contact@hility.com"
+            "name": "Hamlet Muradyan",
+            "email": "contact@hamletmuradyan.com"
         }
     ],
     "autoload": {
