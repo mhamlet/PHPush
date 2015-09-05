@@ -1,40 +1,57 @@
 PHPush
 ======
 
-This is a PHP package to send push notifications to foreign platforms by single API. It's developed by [Hility](http://hility.com).
+PHPUsh is a PHP package that provide a single API to send send push notifications to foreign platforms.
 
 Currently, we support only 2 platforms - Android and iOS.
 
 Example
 -----------
 
-The following examples demonstrate how to send Push notifications with text "Hello, World!" to 2 devices that have different platforms.
+The following examples demonstrate how to send Push notifications with text "Hello, World!" to 2 devices in different platforms.
 
 ```php
-// Include PHPush
+// Include composer autoloader
 require_once 'vendor/autoload.php';
 
+use PHPush\PHPush;
+
 // Setting environment
-\PHPush\PHPush::Environment(\PHPush\PHPush::ENVIRONMENT_PRODUCTION);
+PHPush::Environment(PHPush::ENVIRONMENT_PRODUCTION);
 
 // Adding Android key
-\PHPush\PHPush::Provider(\PHPush\Provider::PROVIDER_ANDROID)->setAccessKey('test');
+PHPush::Provider(\PHPush\Provider::PROVIDER_ANDROID)->setAccessKey('test');
 
-// Adding path to iOS certificate
-\PHPush\PHPush::Provider(\PHPush\Provider::PROVIDER_IOS)->setCertificate('ck.pem');
+// Adding iOS certificate
+PHPush::Provider(\PHPush\Provider::PROVIDER_IOS)->setCertificate('ck.pem');
 
 // Creating new queue
-$queue = \PHPush\PHPush::Queue();
+$queue = PHPush::Queue();
 
-// Adding Android devices
+// Adding some devices
 $queue->add(new \PHPush\providers\android\Device('android_registration_id'));
-
-// Adding iOS devices
 $queue->add(new \PHPush\providers\ios\Device('ios_device_token'));
 
 // Setting message
-$queue->message('Hello, World!');
+$queue->message('Hello World!');
 
-// Send message
-$queue->send();
-```
+// Send message. You can provide custom fields to this method.
+// Also you can pass sound and passphrase with this custom fields
+$queue->send(array(
+    'custom' => 'field',
+    'sound' => 'popup.aif',
+    'passphase' => 'phpush',
+));
+
+// Creating another queue
+$another_queue = PHPush::Queue();
+
+// Adding only one device
+$another_queue->add(new \PHPush\providers\ios\Device('another_or_the_same_ios_device_token'));
+
+// Setting message
+$another_queue->message('Hello World! I\'m second queue!');
+
+// This will not open a connection to APNS server again.
+// It will use the old connection
+$another_queue->send();
