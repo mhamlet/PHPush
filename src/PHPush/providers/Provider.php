@@ -34,5 +34,5 @@ interface Provider {
      * @param Device $devices
      * @param array $custom_fields
      */
-    public function send($message, $devices, $custom_fields = []);
+    public function send($message, $devices, $custom_fields = array());
 }

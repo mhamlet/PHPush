@@ -54,13 +54,13 @@ class Provider implements \PHPush\providers\Provider {
      * @param Device[] $devices
      * @param array  $custom_fields
      */
-    public function send($message, $devices, $custom_fields = []) {
+    public function send($message, $devices, $custom_fields = array()) {
 
         // If list of devices is empty, then we must terminate this process
         if (empty($devices)) return;
 
         // Setting an empty $registration_ids
-        $registration_ids = [];
+        $registration_ids = array();
 
         // For each device
         foreach ($devices as $device) {

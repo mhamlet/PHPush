@@ -77,9 +77,11 @@ class Queue {
     /**
      * Send a message to all devices in current queue
      *
+     * @param array $custom_fields
+     *
      * @throws \Exception
      */
-    public function send() {
+    public function send($custom_fields = array()) {
 
         // Check if message is not empty
         if (empty($this->message)) throw new \Exception('Message cannot be empty.');
@@ -91,7 +93,7 @@ class Queue {
             $provider = PHPush::Provider($provider);
 
             // Sending to all devices
-            $provider->send($this->message, $devices);
+            $provider->send($this->message, $devices, $custom_fields);
         }
     }
 }

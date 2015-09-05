@@ -57,7 +57,7 @@ class Provider implements \PHPush\providers\Provider {
      * @param Device[] $devices
      * @param array  $custom_fields
      */
-    public function send($message, $devices, $custom_fields = []) {
+    public function send($message, $devices, $custom_fields = array()) {
 
         // If list of devices is empty, then we must terminate this process
         if (empty($devices)) return;
@@ -72,7 +72,10 @@ class Provider implements \PHPush\providers\Provider {
         }
 
         // Create the payload body
-        $body['aps'] = array('alert' => $message, 'sound' => 'default');
+        $body['aps'] = array_merge(
+            array('alert' => $message, 'sound' => 'default'),
+            $custom_fields
+        );
 
         // Encode the payload as JSON
         $payload = json_encode($body);
