@@ -19,6 +19,8 @@ class Provider implements \PHPush\providers\Provider {
      */
     private $certificate = '';
 
+    private $stream_socket = null;
+
     /**
      * Not using for this provider
      *
@@ -69,10 +71,6 @@ class Provider implements \PHPush\providers\Provider {
             unset($custom_fields['passphrase']);
         }
 
-        $ctx = stream_context_create();
-        stream_context_set_option($ctx, 'ssl', 'local_cert', $this->certificate);
-        stream_context_set_option($ctx, 'ssl', 'passphrase', $passphrase);
-
         // Create the payload body
         $body['aps'] = array('alert' => $message, 'sound' => 'default');
 
@@ -86,26 +84,51 @@ class Provider implements \PHPush\providers\Provider {
             $device_token = $device->getDeviceToken();
 
             // Setting remote socket
-            $remote_socket = 'ssl://gateway.push.apple.com:2195';
+            $remote_path = 'ssl://gateway.push.apple.com:2195';
 
             // If we are in development environment
             if (PHPush::Environment() == PHPush::ENVIRONMENT_DEVELOPMENT) {
 
                 // Change to development remote socket
-                $remote_socket = 'ssl://gateway.sandbox.push.apple.com:2195';
+                $remote_path = 'ssl://gateway.sandbox.push.apple.com:2195';
             }
 
-            // Open stream socket
-            $fp = stream_socket_client($remote_socket, $err, $errstr, 60, STREAM_CLIENT_CONNECT | STREAM_CLIENT_PERSISTENT, $ctx);
+            $stream_socket = $this->get_stream_socket($remote_path, $passphrase);
 
             // Build the binary notification
             $msg = chr(0) . pack('n', 32) . pack('H*', $device_token) . pack('n', strlen($payload)) . $payload;
 
             // Send it to the server
-            fwrite($fp, $msg, strlen($msg));
+            fwrite($stream_socket, $msg, strlen($msg));
+        }
+    }
 
-            // Close the connection to the server
-            fclose($fp);
+    /**
+     * Opens connection to remote server
+     *
+     * @param string $remote_path
+     *
+     * @return null|resource
+     */
+    private function get_stream_socket($remote_path, $passphrase) {
+
+        if (is_null($this->stream_socket)) {
+
+            $ctx = stream_context_create();
+            stream_context_set_option($ctx, 'ssl', 'local_cert', $this->certificate);
+            stream_context_set_option($ctx, 'ssl', 'passphrase', $passphrase);
+
+            $this->stream_socket = stream_socket_client($remote_path, $err, $errstr, 60, STREAM_CLIENT_CONNECT | STREAM_CLIENT_PERSISTENT, $ctx);
+        }
+
+        return $this->stream_socket;
+    }
+
+    public function __destruct() {
+
+        // Close the connection to the server
+        if (!is_null($this->stream_socket)) {
+            fclose($this->stream_socket);
         }
     }
 }
