@@ -5,6 +5,14 @@ PHPUsh is a PHP package that provide a single API to send send push notification
 
 Currently, we support only 2 platforms - Android and iOS.
 
+Installation
+-----------
+Add the package in your composer.json by executing the following command:
+
+```bash
+composer require mhamlet/phpush
+```
+
 Example
 -----------
 
