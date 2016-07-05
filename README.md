@@ -1,7 +1,7 @@
 PHPush
 ======
 
-PHPUsh is a PHP package that provide a single API to send send push notifications to foreign platforms.
+PHPush is a PHP package that provide a simple API to send push notifications to foreign platforms.
 
 Currently, we support only 2 platforms - Android and iOS.
 
