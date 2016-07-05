@@ -17,9 +17,9 @@ class Provider implements \PHPush\providers\Provider {
      *
      * @var string
      */
-    private $certificate = '';
+    protected $certificate = '';
 
-    private $stream_socket = null;
+    protected $stream_socket = null;
 
     /**
      * Not using for this provider
@@ -113,7 +113,7 @@ class Provider implements \PHPush\providers\Provider {
      *
      * @return null|resource
      */
-    private function get_stream_socket($remote_path, $passphrase) {
+    protected function get_stream_socket($remote_path, $passphrase) {
 
         if (is_null($this->stream_socket)) {
 

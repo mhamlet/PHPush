@@ -16,7 +16,7 @@ class Device implements \PHPush\providers\Device {
      *
      * @var string
      */
-    private $device_token;
+    protected $device_token;
 
     /**
      * Setting device token

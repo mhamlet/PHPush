@@ -3,7 +3,7 @@ PHPush
 
 PHPush is a PHP package that provide a simple API to send push notifications to foreign platforms.
 
-Currently, we support only 2 platforms - Android and iOS.
+Currently, we support 3 platforms - Android, iOS, and Google Chrome.
 
 Installation
 -----------
@@ -38,6 +38,7 @@ $queue = PHPush::Queue();
 
 // Adding some devices
 $queue->add(new \PHPush\providers\android\Device('android_registration_id'));
+$queue->add(new \PHPush\providers\chrome\Device('chrome_registration_id'));
 $queue->add(new \PHPush\providers\ios\Device('ios_device_token'));
 
 // Setting message

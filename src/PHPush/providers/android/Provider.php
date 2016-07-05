@@ -16,7 +16,7 @@ class Provider implements \PHPush\providers\Provider {
      *
      * @var string
      */
-    private $access_key = '';
+    protected $access_key = '';
 
     /**
      * Setting Access Key
