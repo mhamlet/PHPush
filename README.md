@@ -1,6 +1,11 @@
 PHPush
 ======
 
+[![Latest Version](https://img.shields.io/github/release/mhamlet/PHPush.svg?style=flat-square)](https://github.com/mhamlet/PHPush/releases)
+[![Build Status](https://img.shields.io/travis/mhamlet/PHPush/master.svg?style=flat-square)](https://travis-ci.org/mhamlet/PHPush)
+[![Quality Score](https://img.shields.io/scrutinizer/g/mhamlet/PHPush.svg?style=flat-square)](https://scrutinizer-ci.com/g/mhamlet/PHPush)
+[![Total Downloads](https://img.shields.io/packagist/dt/mhamlet/PHPush.svg?style=flat-square)](https://packagist.org/packages/mhamlet/PHPush)
+
 PHPush is a PHP package that provide a simple API to send push notifications to foreign platforms.
 
 Currently, we support 3 platforms - Android, iOS, and Google Chrome.
